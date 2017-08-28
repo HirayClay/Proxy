@@ -8,14 +8,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * Created by CJJ on 2017/8/28.
- * <p>
- * the utility code below is copied from VirtualAPK#{https://github.com/didi/VirtualAPK}
+ *the utility code below is copied from VirtualAPK#{https://github.com/didi/VirtualAPK}
  */
 
-public class Utils {
+public class ReflectUtil {
 
-    private static final String TAG = "Utils";
+    private static final String TAG = "ReflectUtil";
     private static Object sActivityThread;
     private static Instrumentation sInstrumentation;
 
@@ -37,13 +35,13 @@ public class Utils {
                 Class<?> activityThreadClazz = Class.forName("android.app.ActivityThread");
                 Object activityThread = null;
                 try {
-                    activityThread = Utils.getField(activityThreadClazz, null, "sCurrentActivityThread");
+                    activityThread = ReflectUtil.getField(activityThreadClazz, null, "sCurrentActivityThread");
                 } catch (Exception e) {
                     // ignored
                 }
                 if (activityThread == null) {
                     Log.i(TAG, "getActivityThread: ");
-                    activityThread = ((ThreadLocal<?>) Utils.getField(activityThreadClazz, null, "sThreadLocal")).get();
+                    activityThread = ((ThreadLocal<?>) ReflectUtil.getField(activityThreadClazz, null, "sThreadLocal")).get();
                 }
                 sActivityThread = activityThread;
             } catch (Exception e) {
@@ -57,7 +55,7 @@ public class Utils {
     public static Instrumentation getInstrumentation(Context base) {
         if (getActivityThread(base) != null) {
             try {
-                sInstrumentation = (Instrumentation) Utils.invoke(
+                sInstrumentation = (Instrumentation) ReflectUtil.invoke(
                         sActivityThread.getClass(), sActivityThread, "getInstrumentation");
             } catch (Exception e) {
                 e.printStackTrace();

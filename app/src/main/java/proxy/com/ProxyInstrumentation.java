@@ -2,7 +2,6 @@ package proxy.com;
 
 import android.app.Activity;
 import android.app.Instrumentation;
-import android.app.KeyguardManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +11,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
-import proxy.com.util.Utils;
+import proxy.com.util.ReflectUtil;
 
 
 /**
@@ -47,6 +46,7 @@ public class ProxyInstrumentation extends Instrumentation implements Handler.Cal
         ComponentName componentName = intent.getComponent();
         if (componentName != null) {
             Log.i(TAG, "execStartActivity: " + componentName.getClassName());
+            //去掉下面这句立马会告诉你没有注册，所以这步就是VA里面的核心思想，‘偷梁换柱’
             intent.setClassName(who, who.getPackageName() + ".Activity.Standard");
             intent.putExtra(KEY_CLASSNAME, componentName.getClassName());
         }
@@ -56,7 +56,7 @@ public class ProxyInstrumentation extends Instrumentation implements Handler.Cal
         //反射调用
         Class[] parameterType = new Class[]{Context.class, IBinder.class, IBinder.class, Activity.class, Intent.class, int.class, Bundle.class};
         try {
-            activityResult = (ActivityResult) Utils.invoke(Instrumentation.class, baseInstrumentation, "execStartActivity", parameterType,
+            activityResult = (ActivityResult) ReflectUtil.invoke(Instrumentation.class, baseInstrumentation, "execStartActivity", parameterType,
                     who, contextThread, token, target, intent, requestCode, options);
         } catch (Exception e) {
             e.printStackTrace();

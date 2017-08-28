@@ -5,7 +5,7 @@ import android.app.Instrumentation;
 import android.util.Log;
 //import android.app.ActivityThread;
 
-import proxy.com.util.Utils;
+import proxy.com.util.ReflectUtil;
 
 /**
  * Created by CJJ on 2017/8/28.
@@ -32,15 +32,15 @@ public class BaseApp extends Application {
         Instrumentation instrumentation = null;
         try {
             Class<?> activityThreadClass = Class.forName("android.app.ActivityThread");
-            activityThread = Utils.getActivityThread(this);
-            instrumentation = Utils.getInstrumentation(this);
+            activityThread = ReflectUtil.getActivityThread(this);
+            instrumentation = ReflectUtil.getInstrumentation(this);
             //双开空间的辅助器会导致失败，这种情况下插件会失效
             if (instrumentation.getClass().getName().contains("lbe")) {
                 System.exit(0);
             }
 
             ProxyInstrumentation proxyInstrumentation = new ProxyInstrumentation(instrumentation);
-            Utils.setField(activityThreadClass,activityThread,"mInstrumentation",proxyInstrumentation);
+            ReflectUtil.setField(activityThreadClass,activityThread,"mInstrumentation",proxyInstrumentation);
             Log.i(TAG, "hook: instrumentation done");
             //以上代码均仿造VA
         } catch (Exception e) {
