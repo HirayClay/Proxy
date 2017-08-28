@@ -1,4 +1,4 @@
-package proxy.stub;
+package plugin.io;
 
 import org.junit.Test;
 

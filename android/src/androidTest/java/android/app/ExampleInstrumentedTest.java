@@ -1,4 +1,4 @@
-package proxy.stub;
+package android.app;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("proxy.stub.test", appContext.getPackageName());
+        assertEquals("android.app.test", appContext.getPackageName());
     }
 }

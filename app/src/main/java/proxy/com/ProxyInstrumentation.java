@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.os.PersistableBundle;
 import android.util.Log;
 
 import proxy.com.util.ReflectUtil;
@@ -73,6 +74,18 @@ public class ProxyInstrumentation extends Instrumentation implements Handler.Cal
         if (targetClassName != null)
             return baseInstrumentation.newActivity(cl, targetClassName, intent);
         return super.newActivity(cl, className, intent);
+    }
+
+
+    @Override
+    public void callActivityOnCreate(Activity activity, Bundle icicle, PersistableBundle persistentState) {
+        super.callActivityOnCreate(activity, icicle, persistentState);
+    }
+
+    //如果是从外部apk文件加载Activity,但是与这个外部Activity对应的相关资源是宿主的，并不正确，所以手动反射注入赋值
+    @Override
+    public void callActivityOnCreate(Activity activity, Bundle icicle) {
+        super.callActivityOnCreate(activity, icicle);
     }
 }
 

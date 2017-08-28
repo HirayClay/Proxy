@@ -2,6 +2,7 @@ package proxy.com;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class GhostActivity extends AppCompatActivity {
 
@@ -9,5 +10,7 @@ public class GhostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ghost);
+        TextView textView = (TextView) findViewById(R.id.textview);
+        textView.setText(getResources().getString(R.string.app_name));
     }
 }
