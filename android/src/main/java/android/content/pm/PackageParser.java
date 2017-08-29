@@ -6,7 +6,9 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.ArraySet;
+import android.util.DisplayMetrics;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
@@ -16,12 +18,43 @@ import java.util.List;
 /**
  * Created by CJJ on 2017/8/28.
  * all the code copy from android sdk  source code,omit  unnecessary part
- *
- * @author CJJ
  */
 //复制出Android sdk 同名类的大致结构即可，用到的方法拷贝出来，没有使用的不需要拷贝
 public class PackageParser {
 
+
+    //package flags
+    public final static int PARSE_IS_SYSTEM = 1 << 0;
+    public final static int PARSE_CHATTY = 1 << 1;
+    public final static int PARSE_MUST_BE_APK = 1 << 2;
+    public final static int PARSE_IGNORE_PROCESSES = 1 << 3;
+    public final static int PARSE_FORWARD_LOCK = 1 << 4;
+    public final static int PARSE_ON_SDCARD = 1 << 5;
+    public final static int PARSE_IS_SYSTEM_DIR = 1 << 6;
+    public final static int PARSE_IS_PRIVILEGED = 1 << 7;
+    public final static int PARSE_COLLECT_CERTIFICATES = 1 << 8;
+    public final static int PARSE_TRUSTED_OVERLAY = 1 << 9;
+
+    public Package parsePackage(final File packageFile, final int flags) throws PackageParserException {
+        throw new RuntimeException("Stub!");
+    }
+
+
+    public Package parsePackage(final File sourceFile, final String destCodePath, final DisplayMetrics metrics, final int flags) {
+        throw new RuntimeException("Stub!");
+    }
+
+    public void collectManifestDigest(final Package pkg) throws PackageParserException {
+        throw new RuntimeException("Stub!");
+    }
+
+    public void collectCertificates(final Package pkg, final int flags) throws PackageParserException {
+        throw new RuntimeException("Stub!");
+    }
+
+    public static ApkLite parseApkLite(final File apkFile, final int flags) throws PackageParserException {
+        throw new RuntimeException("Stub!");
+    }
 
     static class ParsePackageItemArgs {
         final Package owner;

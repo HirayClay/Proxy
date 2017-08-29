@@ -7,8 +7,7 @@ import java.security.PublicKey;
 
 /**
  * Created by CJJ on 2017/8/29.
- *copy from android sdk-25
- * @author CJJ
+ *copy from android sdk-25 VerifierInfo.java file
  */
 
 public class VerifierInfo implements Parcelable {

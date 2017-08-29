@@ -4,6 +4,8 @@ import android.app.Instrumentation;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.File;
+
 import proxy.util.ReflectUtil;
 
 /**
@@ -53,5 +55,10 @@ public class VAManager {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void loadApk(File apk){
+
     }
 }
