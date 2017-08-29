@@ -1,4 +1,4 @@
-package android.app;
+package proxy.va;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("android.app.test", appContext.getPackageName());
+        assertEquals("proxy.va.test", appContext.getPackageName());
     }
 }

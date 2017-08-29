@@ -1,4 +1,4 @@
-package proxy.com;
+package proxy.va;
 
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -12,7 +12,7 @@ import android.os.Message;
 import android.os.PersistableBundle;
 import android.util.Log;
 
-import proxy.com.util.ReflectUtil;
+import proxy.util.ReflectUtil;
 
 
 /**
@@ -48,7 +48,7 @@ public class ProxyInstrumentation extends Instrumentation implements Handler.Cal
         if (componentName != null) {
             Log.i(TAG, "execStartActivity: " + componentName.getClassName());
             //去掉下面这句立马会告诉你没有注册，所以这步就是VA里面的核心思想，‘偷梁换柱’
-            intent.setClassName(who, who.getPackageName() + ".Activity.Standard");
+            intent.setClassName(who, who.getPackageName() + ".Activity$Standard");
             intent.putExtra(KEY_CLASSNAME, componentName.getClassName());
         }
 

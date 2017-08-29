@@ -17,4 +17,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this,GhostActivity.class));
     }
 
+    public void startRealActivity(View view) {
+        startActivity(new Intent(this,RealActivity.class));
+    }
 }

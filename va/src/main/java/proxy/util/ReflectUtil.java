@@ -1,4 +1,4 @@
-package proxy.com.util;
+package proxy.util;
 
 import android.app.Instrumentation;
 import android.content.Context;
